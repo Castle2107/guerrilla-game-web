@@ -1,29 +1,35 @@
 import React from "react";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
 
-export class Header extends React.Component {
+class Header extends React.Component {
 	render() {
 		return (
-			<Navbar inverse collapseOnSelect>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<a href="#">Guerrilla Game</a>
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				</Navbar.Header>
-			
-				<Navbar.Collapse>
-					<Nav>
-						<NavItem eventKey={1} href="my_profile">My Profile</NavItem>
-						<NavItem eventKey={2} href="#">Ranking</NavItem>
-					</Nav>
-					
-					<Nav pullRight>
-						<NavItem eventKey={1} href="#">Settings</NavItem>
-						<NavItem eventKey={2} href="#">Log Out</NavItem>
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
+			<nav className="navbar navbar-inverse bg-inverse">
+				<div className="container-fluid">
+					<div className="navbar-header">
+						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span className="sr-only">Menu</span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+						</button>
+					<a className="navbar-brand" href="/">Guerrilla Game</a>
+					</div>
+
+					<div id="navbar" className="navbar-collapse collapse">
+						<ul className="nav navbar-nav">
+							<li><a href="my_profile">My Profile</a></li>
+							<li><a href="ranking">Ranking</a></li>
+						</ul>
+						
+						<ul className="nav navbar-nav navbar-right">
+							<li><a href="settings">Settings</a></li>
+							<li><a href="#">LogOut</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 		);
 	}
 }
+
+export default Header;
