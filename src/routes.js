@@ -8,6 +8,7 @@ import Results from "./app/components/Results";
 import Settings from "./app/components/Settings";
 import MyProfile from "./app/components/MyProfile";
 
+
 const Router = () => (
 	<BrowserRouter>
 		<App>
