@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './app/components/Home';
+import Home from './app/pages/home/index';
 import Dashboard from './app/components/Dashboard';
 import Profile from './app/pages/profile/index';
 import Ranking from './app/pages/ranking/index';

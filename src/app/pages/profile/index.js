@@ -25,15 +25,11 @@ class Profile extends Component {
             },
             alerts: {}
         };
-        // this.addDefense = this.addDefense.bind(this);
-        // this.addOffense = this.addOffense.bind(this);
-        // this.saveBattleUnit = this.saveBattleUnit.bind(this);
-        // this.resetBattleUnitPurchase = this.resetBattleUnitPurchase.bind(this);
     }
 
     componentWillMount() {
         // TODO: this data should be bound from store.js (redux)
-        Guerrilla.getGuerrilla(4)
+        Guerrilla.getGuerrilla(13)
             .then(response => {
                 this.setState({
                     username: response.username,

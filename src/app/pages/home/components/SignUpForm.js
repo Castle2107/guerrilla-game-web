@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {signUp} from '../services/api/Auth';
+import {signUp} from '../../../services/api/Auth';
 
 class SignUpForm extends Component {
     constructor(props) {
