@@ -1,0 +1,17 @@
+body {
+  background-color: #f9f9f9;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, label, option, select, button, .nav-item {
+  font-size: 0.85em !important;
+}
+
+input[type="number"] {
+  position: relative;
+  width: 60px;
+  text-align: center;
+}
