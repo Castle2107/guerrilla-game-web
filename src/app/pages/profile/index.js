@@ -5,6 +5,7 @@ import Resources from './components/Resources';
 import BattleUnitTable from './components/BattleUnitTable';
 import BattleUnitsPanel from './components/BattleUnitsPanel';
 import AlertContainer from 'react-alert';
+import { getAuthenticatedUser } from '../../../store';
 
 class Profile extends Component {
     constructor(props) {
@@ -27,7 +28,8 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        Guerrilla.getGuerrilla(13)
+        let userId = getAuthenticatedUser();
+        Guerrilla.getGuerrilla(userId)
             .then(response => {
                 this.setState({
                     username: response.username,

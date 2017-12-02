@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {signUp} from '../../../services/api/Auth';
 import AlertContainer from 'react-alert';
+import { logIn } from '../../../../store';
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class SignUpForm extends Component {
         e.preventDefault();
         signUp(this.state)
             .then((data) => {
+                logIn(data.id);
                 this.props.onCorrectSignUp();        
             })
             .catch((errors) => {
@@ -81,7 +83,7 @@ class SignUpForm extends Component {
                             onChange={(e) => this.handleChange(e)}>
                             <option value="MEC">MEC</option>
                             <option value="China">China</option>
-                            <option value="ISMC">ISMC</option>
+                            <option value="USMC">USMC</option>
                         </select>
                     </div>
                     <div className="form-row">

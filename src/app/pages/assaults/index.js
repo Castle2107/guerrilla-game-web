@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResultTable from './components/ResultTable';
 import Guerrilla from '../../services/api/Guerrilla';
+import { getAuthenticatedUser } from '../../../store';
 
 class AssaultReport extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class AssaultReport extends Component {
     componentDidMount() {
         const data = {
             target_id: this.props.match.params.targetId,
-            attacker_id: 13
+            attacker_id: getAuthenticatedUser()
         }
 
         Guerrilla.attackGuerrilla(data)

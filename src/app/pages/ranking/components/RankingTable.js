@@ -18,9 +18,10 @@ class RankingTable extends Component {
     render() {
         const { guerrillas } = this.props;
         const { filterStr } = this.state;
-        
         const filteredGuerrillas = guerrillas
-            .filter((e) => e.username.includes(filterStr))
+            .filter((e) => {
+                return (e.username.includes(filterStr) && e.id != this.props.authenticatedUser)
+            })
             .map((e, i) => (
                 <tr key={i}>
                     <td>{e.rank}</td>

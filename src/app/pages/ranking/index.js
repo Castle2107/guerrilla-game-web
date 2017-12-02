@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import RankingTable from './components/RankingTable';
 import Guerrilla from '../../services/api/Guerrilla';
+import { getAuthenticatedUser } from '../../../store';
 
 class Ranking extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            guerrillas: []
+            guerrillas: [],
+            authenticatedUser: ''
         };
         this.attack = this.attack.bind(this);
     }
@@ -23,6 +25,8 @@ class Ranking extends Component {
                 alert('Shit! Error at ranking/index.js');
                 console.log(errors);
             });
+        
+        this.setState({authenticatedUser: getAuthenticatedUser()});
     }
 
     attack(targetId) {
@@ -37,6 +41,7 @@ class Ranking extends Component {
                     <RankingTable 
                         guerrillas={this.state.guerrillas}
                         attack={this.attack}
+                        authenticatedUser={this.state.authenticatedUser}
                     />
                 </div>
             </div>

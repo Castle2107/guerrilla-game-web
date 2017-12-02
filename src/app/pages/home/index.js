@@ -10,6 +10,12 @@ class Home extends Component {
         }, 1500);
     }
 
+    onCorrectLogIn = () => {
+        setTimeout(() => {
+            this.props.history.push('/profile');
+        }, 1500);
+    }
+
     render() {
         return (
             <div>
@@ -25,7 +31,7 @@ class Home extends Component {
                         </ul>
                         <div className="tab-content">
                             <div id="login" className="tab-pane fade in active">
-                                <LoginForm />
+                                <LoginForm onCorrectLogIn={() => this.onCorrectLogIn()} />
                             </div>
                             <div id="sign" className="tab-pane fade">
                                 <SignUpForm onCorrectSignUp={() => this.onCorrectSignUp()} />

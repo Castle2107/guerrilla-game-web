@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getAuthenticatedUser, logOut } from '../../store';
 
 class Header extends React.Component {
+
+	logout = () => {
+		logOut();
+		// setTimeout(() => {
+		// 	this.props.history.push('/');
+		// });
+	}	
+
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,6 +37,11 @@ class Header extends React.Component {
 						<li className="nav-item">
 							<Link className="nav-link" to="#">Assault Reports</Link>
 						</li>
+						{(getAuthenticatedUser()) && 
+							<li className="nav-item">
+								<Link className="nav-link" to="#" onClick={() => this.logout()}>Logout</Link>
+							</li>
+						}
 					</ul>
 				</div>
 			</nav>

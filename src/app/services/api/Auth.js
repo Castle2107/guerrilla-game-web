@@ -19,8 +19,8 @@ const post = (url, data) => {
             Promise.resolve(response.data)
         ))
         .catch((errors) => (
-            Promise.reject(errors.response.data)
+            Promise.reject(errors.response)
         ));
 };
 
-export {signUp};
+export {signUp, login};
