@@ -18,12 +18,10 @@ const BattleUnitsPanel = (props) => {
             </div>
             <div className="row">
                 <div className="col-4 mx-auto text-center mt-3">
-                    {(props.isBuying) &&
-                        <button className="btn btn-success btn-lg"
-                            onClick={props.saveBattleUnit}>
-                            Buy battle units!
-                        </button>
-                    }
+                    <button className="btn btn-success btn-lg"
+                        onClick={props.saveBattleUnit}>
+                        Buy battle units!
+                    </button>
                 </div>
             </div>
         </div>

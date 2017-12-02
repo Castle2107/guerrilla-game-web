@@ -20,7 +20,6 @@ class AssaultReport extends Component {
         }
     }
 
-    //TODO: validations and pull data from local storage or redux
     componentDidMount() {
         const data = {
             target_id: this.props.match.params.targetId,
@@ -36,7 +35,7 @@ class AssaultReport extends Component {
                 })
             })
             .catch(errors => {
-                alert('Shit! Error at assaults/index');
+                alert('Damn! Error at assaults/index');
                 console.log(errors)
             });
     }

@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Resources from './components/Resources';
 import BattleUnitTable from './components/BattleUnitTable';
 import BattleUnitsPanel from './components/BattleUnitsPanel';
+import AlertContainer from 'react-alert';
 
 class Profile extends Component {
     constructor(props) {
@@ -14,7 +15,6 @@ class Profile extends Component {
             defense: {},
             offense: {},
             resources: {},
-            isBuying: false,
             offensePurchase: {
                 assault: 0,
                 engineers: 0,
@@ -22,13 +22,11 @@ class Profile extends Component {
             },
             defensePurchase: {
                 bunkers: 0
-            },
-            alerts: {}
+            }
         };
     }
 
-    componentWillMount() {
-        // TODO: this data should be bound from store.js (redux)
+    componentDidMount() {
         Guerrilla.getGuerrilla(13)
             .then(response => {
                 this.setState({
@@ -39,18 +37,14 @@ class Profile extends Component {
                     resources: response.resources
                 });
             })
-            .catch(errors => {
-                this.setState({
-                    alerts: errors
-                })
-            });
+            .catch(error => {
+                console.log(error);
+                this.showAlert(`Whoops! The information related to the guerrilla couldn't be obtained.`, 'error');
+                this.showAlert(error.data.errors, 'info');
+            });     
     }
 
     addDefense = (battleUnit, value) => {
-        this.setState({
-            isBuying: true
-        });
-        
         let defP = this.state.defensePurchase;
         defP[battleUnit] = value;
         
@@ -60,10 +54,6 @@ class Profile extends Component {
     }
 
     addOffense = (battleUnit, value) => {
-        this.setState({
-            isBuying: true
-        });
-        
         let offP = this.state.offensePurchase;
         offP[battleUnit] = value;
         
@@ -82,13 +72,18 @@ class Profile extends Component {
 
         Guerrilla.buyGuerrilla(data)
             .then(response => {
-                console.log(response, 'res buy_guerrilla');
                 this.setState({
                     defense: response.defense,
                     offense: response.offense,
                     resources: response.resources,
-                    alerts: response.info
-                })
+                });
+                if (response.hasOwnProperty('info'))
+                    this.displayPurchaseAlerts(response.info);
+                else
+                    this.showAlert(`Good! No problem reported`); 
+            })
+            .catch(error => {
+                this.showAlert(`Couldn't buy the battle units specified.`, 'error');
             });
 
         this.resetBattleUnitPurchase();
@@ -98,6 +93,29 @@ class Profile extends Component {
         this.setState({
            offensePurchase: {assault: 0, engineers: 0, tanks: 0},
            defensePurchase: {bunkers: 0} 
+        });
+    }
+
+    displayPurchaseAlerts = (info) => {
+        Object.keys(info).map((battleUnit) => {
+            if (info[battleUnit].success)
+                this.showAlert(`${info[battleUnit].msg}`, 'success');
+            else
+                this.showAlert(`${info[battleUnit].msg}`, 'error');
+        });
+    }
+
+    alertOptions = {
+        offset: 14,
+        position: 'top right',
+        theme: 'dark',
+        time: 0,
+        transition: 'fade'
+    }
+
+    showAlert = (messageText, messageType) => {
+        this.msg.show(messageText, {
+            type: messageType
         });
     }
 
@@ -126,12 +144,16 @@ class Profile extends Component {
                             onChange={this.addDefense}
                         />
                     }
-                    isBuying={() => this.state.isBuying}
                     saveBattleUnit={this.saveBattleUnit} 
                 />
+
+                <div className="mt-5 mb-3">
+                    <hr />
+                    <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+                </div>
             </div>
         );
-    }
+    }  
 
 }
 

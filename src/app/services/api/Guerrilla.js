@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { get, post } from '../../axios';
 
 const BASE_URL = 'http://127.0.0.1:8000'; //TODO: this url will change, so it won't be a constant
 const GET_GUERRILLA_URL = BASE_URL + '/inspect_guerrilla';
@@ -26,21 +27,21 @@ class Guerrilla {
 
     static get(url, data) {
         return axios.get(url, data)
-            .then((response) => (
+            .then(response => (
                 Promise.resolve(response.data)
             ))
-            .catch((errors) => (
-                Promise.reject(errors.response.data)
+            .catch(errors => (
+                Promise.reject(errors.response)
             ))
     }
 
     static post(url, data) {
         return axios.post(url, data)
-            .then((response) => (
-                Promise.resolve(response.data)                
+            .then(response => (
+                Promise.resolve(response.data)
             ))
-            .catch((errors) => (
-                Promise.reject(errors.response.data)                
+            .catch(errors => (
+                Promise.reject(errors.response)
             ));
     }
 

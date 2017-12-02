@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {signUp} from '../../../services/api/Auth';
+import AlertContainer from 'react-alert';
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -22,20 +23,38 @@ class SignUpForm extends Component {
         e.preventDefault();
         signUp(this.state)
             .then((data) => {
-                this.props.history.push('/profile');
+                this.props.onCorrectSignUp();        
             })
             .catch((errors) => {
-                console.log(errors, 'shit');
-                this.setState({
-                    errors: errors.errors
-                })
+                if (errors.hasOwnProperty('errors')) {
+                    this.displayErrors(errors.errors);
+                }else {
+                    this.showAlert('Wrong data provided. Please try again!');
+                }
             });
     }
 
+    displayErrors = (errors) => {
+        Object.keys(errors).map((field) => {
+            this.showAlert(errors[field][0], 'error');
+        });
+    }
+
+    alertOptions = {
+        offset: 14,
+        position: 'top right',
+        theme: 'dark',
+        time: 0,
+        transition: 'fade'
+    }
+
+    showAlert = (messageText, messageType) => {
+        this.msg.show(messageText, {
+            type: messageType
+        });
+    }
+
     render() {
-        let email = this.state.email;
-        let username = this.state.username;
-        let faction = this.state.faction;
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="card card-body">
@@ -44,21 +63,21 @@ class SignUpForm extends Component {
                             <label>Username</label>
                             <input type="text" className="form-control"
                                 name="username" placeholder="Username"
-                                value={username}
+                                value={this.state.username}
                                 onChange={(e) => this.handleChange(e)}/>
                         </div>
                         <div className="form-group col-md-6">
                             <label>Email</label>
                             <input type="email" className="form-control"
                                 name="email" placeholder="Email"
-                                value={email}
+                                value={this.state.email}
                                 onChange={(e) => this.handleChange(e)} />
                         </div>
                     </div>
                     <div className="form-group">
                         <label>Faction</label>
                         <select className="form-control" name="faction"
-                            value={faction}
+                            value={this.state.faction}
                             onChange={(e) => this.handleChange(e)}>
                             <option value="MEC">MEC</option>
                             <option value="China">China</option>
@@ -69,6 +88,7 @@ class SignUpForm extends Component {
                         <button type="submit" className="col btn btn-success">Sign up</button>
                     </div>
                 </form>
+                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
             </div>
         );
     }

@@ -50,7 +50,7 @@ const ResultTable = (props) => {
                             <td>{props.guerrilla.resources_lost.people}</td>
                         </tr>
                         <tr>
-                            <th>Defense Lost</th>
+                            <th>Offense Lost</th>
                         </tr>
                         <tr>
                             <th></th>
@@ -68,7 +68,7 @@ const ResultTable = (props) => {
                             <td>{props.guerrilla.defense_lost.tanks}</td>
                         </tr>
                         <tr>
-                            <th>Offense Lost</th>
+                            <th>Defense Lost</th>
                         </tr>
                         <tr>
                             <th></th>
