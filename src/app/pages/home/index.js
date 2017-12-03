@@ -14,7 +14,7 @@ class Home extends Component {
     }
 
     onCorrectSignUp = () => {
-        //   this.props.history.push('/profile');
+        // this.props.history.push('/');
         this.setState({ loggedIn: true });
     }
 
@@ -28,7 +28,9 @@ class Home extends Component {
         const { loggedIn } = this.state;
         if (loggedIn) {
             this.setState({ loggedIn: false });
-            return <Redirect to='/dashboard'/>;
+            this.props.history.push('/');
+            window.location.reload();
+            return;
         }
 
         return (
