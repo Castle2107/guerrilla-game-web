@@ -53,9 +53,9 @@ class LoginForm extends Component {
             <div>
                 <form onSubmit={(e) => this.handleSubmit(e)} className="card card-body">
                     <div className="form-group">
-                        <label className="col-form-label">Email</label>
-                        <input type="email" className="form-control" 
-                            name="email" placeholder="Email"
+                        <label className="col-form-label">Email or Username</label>
+                        <input type="text" className="form-control" 
+                            id="email" name="email" placeholder="Email / Username"
                             value={this.state.email}
                             onChange={(e) => this.handleChange(e)} />
                     </div>
