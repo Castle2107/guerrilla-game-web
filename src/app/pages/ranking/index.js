@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Redirect } from "react-router-dom";
+
 import RankingTable from './components/RankingTable';
 import Guerrilla from '../../services/api/Guerrilla';
 import { getAuthenticatedUser } from '../../../store';
@@ -34,6 +36,10 @@ class Ranking extends Component {
     }
 
     render() {
+         if (!getAuthenticatedUser) {
+            return <Redirect to='/'/>;
+        }
+
         return(
             <div>
                 <Header />
