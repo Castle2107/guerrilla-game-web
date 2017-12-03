@@ -19,8 +19,10 @@ class Header extends React.Component {
 	render() {
 		const { loggedOut } = this.state;
         if (loggedOut) {
-        	this.setState({ loggedOut: false });
-            return <Redirect to='/'/>;
+			this.setState({ loggedOut: false });
+            this.props.history.push('/');
+			window.location.reload();
+			return;
         }
 
 		return (
@@ -35,10 +37,6 @@ class Header extends React.Component {
 					{(getAuthenticatedUser()) && 
 						<ul className="navbar-nav mr-auto">
 							<li className="nav-item">
-								<Link className="nav-link" to="/dashboard">Dashboard</Link>
-							</li>
-						
-							<li className="nav-item">
 								<Link className="nav-link" to="/profile">Profile</Link>
 							</li>
 					
@@ -50,10 +48,6 @@ class Header extends React.Component {
 								<Link className="nav-link" to="/settings">Settings</Link>
 							</li>
 				
-							<li className="nav-item">
-								<Link className="nav-link" to="#">Assault Reports</Link>
-							</li>
-					
 							<li className="nav-item">
 								<Link className="nav-link" to="#" onClick={() => this.logout()}>Logout</Link>
 							</li>
