@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 
 class Home extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false
+        };
+    }
+
     onCorrectSignUp = () => {
-        setTimeout(() => {
-            this.props.history.push('/profile');
-        }, 1500);
+        //   this.props.history.push('/profile');
+        this.setState({ loggedIn: true });
     }
 
     onCorrectLogIn = () => {
-        setTimeout(() => {
-            this.props.history.push('/profile');
-        }, 1500);
+        //    this.props.history.push('/profile');
+        this.setState({ loggedIn: true });
     }
 
     render() {
+
+        const { loggedIn } = this.state;
+        if (loggedIn) {
+            this.setState({ loggedIn: false });
+            return <Redirect to='/dashboard'/>;
+        }
+
         return (
             <div>
                 <HomeContainer>
