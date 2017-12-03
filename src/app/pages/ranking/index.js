@@ -36,10 +36,6 @@ class Ranking extends Component {
     }
 
     render() {
-         if (!getAuthenticatedUser) {
-            return <Redirect to='/'/>;
-        }
-
         return(
             <div>
                 <Header />
