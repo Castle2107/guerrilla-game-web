@@ -6,7 +6,7 @@ class Settings extends Component {
 			<div>
 				<div className="container">
 					<p className="lead text-center mt-5">
-						Add the new IP that belongs to the server you want to connect to
+						Add the new IP that belongs the server you want to connect to
 					</p>
 					<div className="row mt-5">
 						<div className="col-4 mx-auto text-center">
