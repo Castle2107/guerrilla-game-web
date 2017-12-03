@@ -1,17 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import { getAuthenticatedUser, logOut } from '../../store';
 
 class Header extends React.Component {
 
+	constructor(props) {
+        super(props);
+        this.state = {
+            loggedOut: false
+        };
+    }
+
 	logout = () => {
 		logOut();
-		// setTimeout(() => {
-		// 	this.props.history.push('/');
-		// });
-	}	
+		this.setState({ loggedOut: true });
+	}
 
 	render() {
+		const { loggedOut } = this.state;
+        if (loggedOut) {
+        	this.setState({ loggedOut: false });
+            return <Redirect to='/'/>;
+        }
+
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 				<Link className="navbar-brand" to="/">Guerrilla Game</Link>
@@ -21,32 +32,37 @@ class Header extends React.Component {
 				</button>
 
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul className="navbar-nav mr-auto">
-						<li className="nav-item">
-							<Link className="nav-link" to="/dashboard">Dashboard</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/profile">Profile</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/ranking">Ranking</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/settings">Settings</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="#">Assault Reports</Link>
-						</li>
-						{(getAuthenticatedUser()) && 
+					{(getAuthenticatedUser()) && 
+						<ul className="navbar-nav mr-auto">
+							<li className="nav-item">
+								<Link className="nav-link" to="/dashboard">Dashboard</Link>
+							</li>
+						
+							<li className="nav-item">
+								<Link className="nav-link" to="/profile">Profile</Link>
+							</li>
+					
+							<li className="nav-item">
+								<Link className="nav-link" to="/ranking">Ranking</Link>
+							</li>
+					
+							<li className="nav-item">
+								<Link className="nav-link" to="/settings">Settings</Link>
+							</li>
+				
+							<li className="nav-item">
+								<Link className="nav-link" to="#">Assault Reports</Link>
+							</li>
+					
 							<li className="nav-item">
 								<Link className="nav-link" to="#" onClick={() => this.logout()}>Logout</Link>
 							</li>
-						}
-					</ul>
+						</ul>
+					}
 				</div>
 			</nav>
 		);
 	}
 }
 
-export default Header;
+export default withRouter(Header);
