@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {signUp} from '../../../services/api/Auth';
+import { signUp } from '../../../services/api/Auth';
 import AlertContainer from 'react-alert';
 import { logIn } from '../../../../store';
 
@@ -22,12 +22,18 @@ class SignUpForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        signUp(this.state)
+
+        let email = this.state.email, username = this.state.username, faction = this.state.faction;
+        let data = {email, username, faction};
+        
+        signUp(data)
             .then((data) => {
-                logIn(data.id);
+                console.log(data, 'data on sign up');
+                logIn(data.data.id);
                 this.props.onCorrectSignUp();        
             })
             .catch((errors) => {
+                console.log(errors, 'error on Sign up');
                 if (errors.hasOwnProperty('errors')) {
                     this.displayErrors(errors.errors);
                 }else {
