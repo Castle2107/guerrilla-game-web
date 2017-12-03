@@ -10,7 +10,6 @@ class SignUpForm extends Component {
             email: '',
             username: '',
             faction: 'MEC', //default value
-            errors: {}
         };
     }
 
@@ -27,15 +26,15 @@ class SignUpForm extends Component {
         let data = {email, username, faction};
         
         signUp(data)
-            .then((data) => {
-                console.log(data, 'data on sign up');
-                logIn(data.data.id);
+            .then((response) => {
+                console.log(response, 'response on sign up');
+                logIn(response.id);
                 this.props.onCorrectSignUp();        
             })
-            .catch((errors) => {
-                console.log(errors, 'error on Sign up');
-                if (errors.hasOwnProperty('errors')) {
-                    this.displayErrors(errors.errors);
+            .catch((error) => {
+                console.log(error, 'error on Sign up');
+                if (error.data.errors) {
+                    this.displayErrors(error.data.errors);
                 }else {
                     this.showAlert('Wrong data provided. Please try again!');
                 }

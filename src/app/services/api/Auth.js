@@ -5,7 +5,7 @@ const LOGIN_URL = BASE_URL + '/login'; //TODO: create this route in web service
 const SIGN_UP_URL = BASE_URL + '/create_guerrilla';
 
 const signUp = (data) => {
-    return axios.post(SIGN_UP_URL, data);
+    return post(SIGN_UP_URL, data);
 };
 
 const login = (data) => {
@@ -25,7 +25,7 @@ const post = (url, data) => {
             Promise.resolve(response.data)
         ))
         .catch((errors) => (
-            Promise.reject(errors)
+            Promise.reject(errors.response)
         ));
 };
 

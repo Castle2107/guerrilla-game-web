@@ -14,23 +14,24 @@ class RankingTable extends Component {
         this.setState({ filterStr: filterStr });
     }
 
-    //TODO: obviously, it shouldn't be displayed the current logged player
     render() {
         const { guerrillas } = this.props;
         const { filterStr } = this.state;
         const filteredGuerrillas = guerrillas
             .filter((e) => {
-                return (e.username.includes(filterStr) && e.id != this.props.authenticatedUser)
+                return (e.username.includes(filterStr))
             })
             .map((e, i) => (
                 <tr key={i}>
                     <td>{e.rank}</td>
                     <td>{e.username}</td>
                     <td>
-                        <button className="btn btn-default btn-sm" 
-                            onClick={() => this.props.attack(e.id)}>
-                            Attack
-                        </button>
+                        {e.id != this.props.authenticatedUser &&
+                            <button className="btn btn-default btn-sm" 
+                                onClick={() => this.props.attack(e.id)}>
+                                Attack
+                            </button>
+                        }
                     </td>
                 </tr>
             ));

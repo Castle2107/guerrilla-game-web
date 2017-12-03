@@ -15,3 +15,8 @@ input[type="number"] {
   width: 60px;
   text-align: center;
 }
+
+.ranking-table {
+  height: 450px;
+  overflow: scroll;
+}

@@ -15,7 +15,7 @@ class Ranking extends Component {
         this.attack = this.attack.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         Guerrilla
             .list()
             .then(response => {
