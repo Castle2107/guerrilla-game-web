@@ -19,18 +19,14 @@ class Home extends Component {
     }
 
     onCorrectLogIn = () => {
-        //    this.props.history.push('/profile');
         this.setState({ loggedIn: true });
     }
 
     render() {
 
-        const { loggedIn } = this.state;
+        let { loggedIn } = this.state;
         if (loggedIn) {
-            this.setState({ loggedIn: false });
-            this.props.history.push('/');
             window.location.reload();
-            return;
         }
 
         return (

@@ -10,4 +10,12 @@ const getAuthenticatedUser = () => {
     return localStorage.getItem('AUTHENTICATED_USER');
 }
 
+let getBase_URL = () => {
+    return localStorage.getItem('BASE_URL');
+}
+
+let setBase_URL = () => {
+    
+}
+
 export { logIn, logOut, getAuthenticatedUser };

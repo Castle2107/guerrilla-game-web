@@ -17,13 +17,11 @@ class Header extends React.Component {
 	}
 
 	render() {
-		const { loggedOut } = this.state;
-        if (loggedOut) {
-			this.setState({ loggedOut: false });
-            this.props.history.push('/');
+
+		let { loggedOut } = this.state;
+		if (loggedOut) {
 			window.location.reload();
-			return;
-        }
+		}
 
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
