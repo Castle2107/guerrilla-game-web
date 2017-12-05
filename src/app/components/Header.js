@@ -34,25 +34,31 @@ class Header extends React.Component {
 				</button>
 
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
-					{(getAuthenticatedUser()) && 
-						<ul className="navbar-nav mr-auto">
+					<ul className="navbar-nav mr-auto">
+						{(getAuthenticatedUser()) && 
 							<li className="nav-item">
 								<Link className="nav-link" to="/profile">Profile</Link>
 							</li>
-					
+						}
+
+						{(getAuthenticatedUser()) && 				
 							<li className="nav-item">
 								<Link className="nav-link" to="/ranking">Ranking</Link>
 							</li>
-					
+						}
+
+						{(!getAuthenticatedUser()) && 
 							<li className="nav-item">
 								<Link className="nav-link" to="/settings">Settings</Link>
 							</li>
+						}
 				
+						{(getAuthenticatedUser()) && 
 							<li className="nav-item">
 								<Link className="nav-link" to="#" onClick={() => this.logout()}>Logout</Link>
 							</li>
-						</ul>
-					}
+						}
+					</ul>
 				</div>
 			</nav>
 		);

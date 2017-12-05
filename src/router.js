@@ -21,7 +21,7 @@ const Routes = (props) => {
 					<Route exact path="/" component={ isAuth? Dashboard : defaultComponent }/>
 					<Route path="/profile" component={ isAuth? Profile  : defaultComponent }/>
 					<Route path="/ranking" component={ isAuth? Ranking  : defaultComponent }/>
-					<Route path="/settings" component={ isAuth? Settings : defaultComponent }/>
+					<Route path="/settings" component={ isAuth? Dashboard : Settings }/>
 					<Route path="/assault_report/:targetId" component={ isAuth? Assault : defaultComponent }/>
 					<Route component={ isAuth? Dashboard : defaultComponent }/>
 				</Switch>
