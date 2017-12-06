@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 
@@ -14,7 +12,6 @@ class Home extends Component {
     }
 
     onCorrectSignUp = () => {
-        // this.props.history.push('/');
         this.setState({ loggedIn: true });
     }
 

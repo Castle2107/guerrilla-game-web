@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import { Redirect } from "react-router-dom";
-
 import RankingTable from './components/RankingTable';
 import Guerrilla from '../../services/api/Guerrilla';
 import { getAuthenticatedUser } from '../../../store';

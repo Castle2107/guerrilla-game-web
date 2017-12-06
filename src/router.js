@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getAuthenticatedUser } from './store';
 import Home from './app/pages/home/index';
 import Dashboard from './app/components/Dashboard';

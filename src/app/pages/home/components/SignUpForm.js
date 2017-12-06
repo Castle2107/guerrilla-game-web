@@ -33,9 +33,9 @@ class SignUpForm extends Component {
             })
             .catch((error) => {
                 console.log(error, 'error on Sign up');
-                if (error.data.errors) {
+                if (error && error.data.errors) {
                     this.displayErrors(error.data.errors);
-                }else {
+                } else {
                     this.showAlert('Wrong data provided. Please try again!');
                 }
             });

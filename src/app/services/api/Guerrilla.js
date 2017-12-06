@@ -1,11 +1,11 @@
 import axios from 'axios';
-// import { get, post } from '../../axios';
+import { getBase_URL } from '../../../store';
 
 const BASE_URL = 'http://127.0.0.1:8000'; //TODO: this url will change, so it won't be a constant
-const GET_GUERRILLA_URL = BASE_URL + '/inspect_guerrilla';
-const BUY_GUERRILLA_URL = BASE_URL + '/buy_guerrilla';
-const LIST_GUERRILLAS_URL = BASE_URL + '/list_guerrillas';
-const ATTACK_GUERRILLA_URL = BASE_URL + '/attack_guerrilla';
+const GET_GUERRILLA_URL = getBase_URL() + '/inspect_guerrilla';
+const BUY_GUERRILLA_URL = getBase_URL() + '/buy_guerrilla';
+const LIST_GUERRILLAS_URL = getBase_URL() + '/list_guerrillas';
+const ATTACK_GUERRILLA_URL = getBase_URL() + '/attack_guerrilla';
 
 class Guerrilla {
 

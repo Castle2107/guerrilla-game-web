@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { getBase_URL } from '../../../store';
 
 const BASE_URL = 'http://127.0.0.1:8000'; //TODO: this url will change, so it won't be a constant
-const LOGIN_URL = BASE_URL + '/login'; //TODO: create this route in web service
-const SIGN_UP_URL = BASE_URL + '/create_guerrilla';
+const LOGIN_URL = getBase_URL() + '/login'; //TODO: create this route in web service
+const SIGN_UP_URL = getBase_URL() + '/create_guerrilla';
 
 const signUp = (data) => {
     return post(SIGN_UP_URL, data);

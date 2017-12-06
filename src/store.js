@@ -11,11 +11,12 @@ const getAuthenticatedUser = () => {
 }
 
 let getBase_URL = () => {
-    return localStorage.getItem('BASE_URL');
+    return 'http://' + localStorage.getItem('BASE_URL');
 }
 
-let setBase_URL = () => {
-    
+let setBase_URL = (newIp) => {
+    localStorage.setItem('BASE_URL', newIp);
+    window.location.reload();
 }
 
-export { logIn, logOut, getAuthenticatedUser };
+export { logIn, logOut, getAuthenticatedUser, setBase_URL, getBase_URL };

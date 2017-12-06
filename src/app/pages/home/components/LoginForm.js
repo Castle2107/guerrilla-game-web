@@ -20,17 +20,22 @@ class LoginForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         login(this.state.email)
-            .then(response => {
-                console.log(response);
+            .then((response) => {
+                console.log('loginForm.js then');
+                console.log(response, 'response');
                 logIn(response);
                 this.props.onCorrectLogIn();
             })
-            .catch(error => {
-                console.log(error);
-                if (error.data.errors)
+            .catch((error) => {
+                console.log('loginForm.js catch');                
+                console.log(error, 'error');
+                // validates if exists an error thrown by a server and
+                // if so, we ask for the variable errors in data object
+                if (error && error.data.errors) {
                     this.showAlert(`${error.data.errors}. Try again!`, 'error');
-                else
+                } else {
                     this.showAlert('The provided info do not match our records', 'error');
+                }
             })
     }
 
