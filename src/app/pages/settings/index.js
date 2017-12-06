@@ -40,7 +40,6 @@ class Settings extends Component {
 							</div>
 						</div>
 					</div>
-					<div className></div>
 					<div className="row mt-5">
 						<div className="col-4 mx-auto text-center">
 							<form onSubmit={(e) => this.handleSubmit(e)} action="/">
