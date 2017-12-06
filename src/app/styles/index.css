@@ -1,7 +1,5 @@
 body {
   background-color: #f9f9f9;
-  overflow: hidden;
-  background: #000;
 }
 
 label {
@@ -21,48 +19,4 @@ input[type="number"] {
 .ranking-table {
   height: 450px;
   overflow: scroll;
-}
-
-.guerrilla {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	height: 800px;
-	color: #FFF;
-	font-size: 200%;
-	font-weight: 100;
-	letter-spacing: 10px;
-	line-height: 150%;
-	perspective: 400px;
-	text-align: justify;
-	z-index: -999;
-}
-
-.content {
-	position: relative;
-	top: 99999px;
-	transform-origin: 80% 100%;
-	animation: content 250s linear;
-}
-
-.content > .title {
-	font-size: 90%;
-	text-align: center;
-}
-
-.content > .title h1 {
-	margin: 0 0 100px;
-	text-transform: uppercase;
-}
-
-@keyframes content {
-	0% {
-		top: -100px;
-		transform: rotateX(20deg)  translateZ(0);
-	}
-	100% { 
-		top: -6000px;
-		transform: rotateX(25deg) translateZ(-2500px);
-	}
 }
